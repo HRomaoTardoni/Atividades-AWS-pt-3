@@ -1,0 +1,22 @@
+from datetime import date
+
+def calcular_idade_em_dias(ano_nascimento: int) -> int:
+    """
+    Calcula a idade aproximada de uma pessoa em dias com base no ano de nascimento.
+
+    Parâmetros:
+        ano_nascimento (int): O ano de nascimento da pessoa.
+
+    Retorna:
+        int: Idade aproximada em dias.
+    """
+    ano_atual = date.today().year
+    idade_anos = ano_atual - ano_nascimento
+    idade_dias = idade_anos * 365  # Aproximação, sem considerar anos bissextos
+    return idade_dias
+
+
+# Exemplo de uso:
+ano = int(input("Digite seu ano de nascimento: "))
+dias = calcular_idade_em_dias(ano)
+print(f"Sua idade aproximada em dias é: {dias} dias.")
