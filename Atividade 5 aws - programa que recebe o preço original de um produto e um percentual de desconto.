@@ -1,0 +1,52 @@
+def calcular_preco_com_desconto(preco: float, desconto_percentual: float) -> float:
+    """
+    Calcula o preço final após aplicar o desconto.
+
+    Parâmetros:
+        preco (float): Preço original do produto.
+        desconto_percentual (float): Percentual de desconto (ex: 10 para 10%).
+
+    Retorna:
+        float: Preço final com o desconto aplicado.
+    """
+    valor_desconto = (preco * desconto_percentual) / 100
+    preco_final = preco - valor_desconto
+    return preco_final
+
+
+def programa_interativo():
+    print("Calculadora de Desconto")
+    print("------------------------")
+
+    while True:
+        try:
+            preco = float(input("Digite o preço do produto (ex: 250.75): R$ "))
+            if preco < 0:
+                print("O preço não pode ser negativo.")
+                continue
+            break
+        except ValueError:
+            print("Erro: Digite um número válido para o preço.")
+
+    while True:
+        try:
+            desconto = float(input("Digite o percentual de desconto (ex: 10): "))
+            if desconto < 0 or desconto > 100:
+                print("O desconto deve estar entre 0% e 100%.")
+                continue
+            break
+        except ValueError:
+            print("Erro: Digite um número válido para o desconto.")
+
+    preco_final = calcular_preco_com_desconto(preco, desconto)
+    valor_desconto = preco - preco_final
+
+    print("\nResumo:")
+    print(f"Preço original:        R$ {preco:.2f}")
+    print(f"Desconto aplicado:     {desconto:.1f}%")
+    print(f"Valor do desconto:     R$ {valor_desconto:.2f}")
+    print(f"Preço final:           R$ {preco_final:.2f}")
+
+
+# Executa o programa
+programa_interativo()
