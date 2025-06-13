@@ -1,0 +1,50 @@
+def calcular_gorjeta(valor_conta: float, porcentagem_gorjeta: float) -> float:
+    """
+    Calcula o valor da gorjeta baseado no total da conta e na porcentagem desejada.
+
+    Parâmetros:
+        valor_conta (float): O valor total da conta.
+        porcentagem_gorjeta (float): A porcentagem da gorjeta (ex: 15 para 15%).
+
+    Retorna:
+        float: O valor da gorjeta calculada.
+    """
+    return (valor_conta * porcentagem_gorjeta) / 100
+
+
+def programa_interativo():
+    print("Calculadora de Gorjeta")
+    print("----------------------")
+
+    while True:
+        try:
+            valor_conta = float(input("Digite o valor total da conta (ex: 123.45): R$ "))
+            if valor_conta < 0:
+                print("O valor da conta não pode ser negativo.")
+                continue
+            break
+        except ValueError:
+            print("Erro: Digite um número válido para o valor da conta.")
+
+    while True:
+        try:
+            porcentagem = float(input("Digite a porcentagem da gorjeta (ex: 10 para 10%): "))
+            if porcentagem < 0:
+                print("A porcentagem não pode ser negativa.")
+                continue
+            break
+        except ValueError:
+            print("Erro: Digite um número válido para a porcentagem.")
+
+    gorjeta = calcular_gorjeta(valor_conta, porcentagem)
+    total_com_gorjeta = valor_conta + gorjeta
+
+    print("\nResumo:")
+    print(f"Valor da conta:        R$ {valor_conta:.2f}")
+    print(f"Porcentagem da gorjeta: {porcentagem:.1f}%")
+    print(f"Valor da gorjeta:      R$ {gorjeta:.2f}")
+    print(f"Total a pagar:         R$ {total_com_gorjeta:.2f}")
+
+
+# Executa o programa interativo
+programa_interativo()
