@@ -1,0 +1,31 @@
+import unicodedata
+import string
+
+def eh_palindromo(texto: str) -> str:
+    """
+    Verifica se uma palavra ou frase é um palíndromo.
+    Ignora espaços, pontuação, acentos e diferenças entre maiúsculas/minúsculas.
+
+    Parâmetro:
+        texto (str): A palavra ou frase a ser verificada.
+
+    Retorna:
+        str: "Sim" se for palíndromo, "Não" caso contrário.
+    """
+    # Remove acentos
+    texto_normalizado = unicodedata.normalize('NFD', texto)
+    texto_sem_acentos = ''.join(c for c in texto_normalizado if unicodedata.category(c) != 'Mn')
+
+    # Remove pontuação e espaços, e converte para minúsculas
+    texto_limpo = ''.join(c.lower() for c in texto_sem_acentos if c.isalnum())
+
+    # Verifica se é palíndromo
+    if texto_limpo == texto_limpo[::-1]:
+        return "Sim"
+    else:
+        return "Não"
+
+# Exemplos de uso
+print(eh_palindromo("A grama é amarga"))         # Sim
+print(eh_palindromo("Socorram-me, subi no ônibus em Marrocos"))  # Sim
+print(eh_palindromo("Isso não é um palíndromo")) # Não
